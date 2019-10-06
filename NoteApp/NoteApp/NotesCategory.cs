@@ -1,14 +1,19 @@
 ﻿using System;
-using NoteApp;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//Новый комментарий
 namespace NoteApp
 {
-    public class Class1
+    public enum NotesCategory
     {
+        Job,
+        House,
+        HealthAndSport,
+        People,
+        Documentation,
+        Finance,
+        Other
     }
 }
