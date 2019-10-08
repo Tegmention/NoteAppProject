@@ -9,7 +9,7 @@ namespace NoteApp
 {
     /// <summary>
     /// Статический класс для управления проектом, 
-    /// содержит методы сериализации 
+    /// содерж методы сериализации 
     /// и дисериализации
     /// </summary>
     public static class ProjectManager
@@ -17,34 +17,36 @@ namespace NoteApp
         /// <summary>
         /// Путь для хранения файла со списком заметок
         /// </summary>
-        private static string FileName = "C:/Users/User/Documents/NoteApp.notes";
+        private static string _fileName =
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            + @"/NoteApp.notes";
 
         /// <summary>
         /// Статический метод сохранения данных (сиреализации)
         /// </summary>
-        /// <param name="List">Список хранящий все заметки</param>
-        public static void SaveToFile(List<Note> List)
+        /// <param name="project">Список хранящий все заметки</param>
+        public static void SaveToFile(Project project)
         {
             JsonSerializer serializer = new JsonSerializer();
-            using (StreamWriter sw = new StreamWriter(FileName))
+            using (StreamWriter sw = new StreamWriter(_fileName))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                serializer.Serialize(writer, List);
+                serializer.Serialize(writer, project);
             }
         }
 
         /// <summary>
         /// Статический метод загрузки данных (дисериализация)
         /// </summary>
-        /// <returns>Возвращает список заметок объект List<Note> </returns>
-        public static List<Note> LoadFromFile()
+        /// <returns>Возвращает список заметок объект Project </returns>
+        public static Project LoadFromFile()
         {
-            List<Note> List = null;
+            Project project = null;
             JsonSerializer serializer = new JsonSerializer();
-            using (StreamReader sr = new StreamReader(FileName))
+            using (StreamReader sr = new StreamReader(_fileName))
             using (JsonReader reader = new JsonTextReader(sr))
             {
-               return List = (List<Note>)serializer.Deserialize<List<Note>>(reader);
+               return project = (Project)serializer.Deserialize<Project>(reader);
             }
         }
     }
