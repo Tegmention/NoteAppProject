@@ -18,17 +18,17 @@ namespace NoteAppUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new NoteApp());
-            Note note = new Note();
-            Project project = new Project();
-            project.Notes.Add(note);
-            note = new Note();
-            project.Notes.Add(note);
+            //Note note = new Note();
+            //Project project = new Project();
+            //project.Notes.Add(note);
+            //note = new Note();
+            //project.Notes.Add(note);
             //ProjectManager.SaveToFile();
             //project.ClearNote();
             //project.LoadProject();
             //Console.WriteLine(project.AttNote(0).Name);
             //MessageBox.Show(project.AttNote(0).Name);
-            project.Notes.Clear();
+            //project.Notes.Clear();
         }
     }
 }
