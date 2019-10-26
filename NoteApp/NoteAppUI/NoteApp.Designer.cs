@@ -46,7 +46,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.CreatedDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.ModifiedDateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.ModifiedDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.EditPictureBox = new System.Windows.Forms.PictureBox();
             this.RemovePictureBox = new System.Windows.Forms.PictureBox();
             this.AddPictureBox = new System.Windows.Forms.PictureBox();
@@ -70,18 +70,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Items.AddRange(new object[] {
-            "Работа",
-            "Дом",
-            "Здоровье и Спорт",
-            "Люди",
-            "Документы",
-            "Финансы",
-            "Разное"});
+            "Job",
+            "House",
+            "HealthAndSport",
+            "People",
+            "Documentation",
+            "Finance",
+            "Other"});
             this.CategoryComboBox.Location = new System.Drawing.Point(88, 6);
             this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(157, 21);
+            this.CategoryComboBox.Size = new System.Drawing.Size(155, 21);
             this.CategoryComboBox.TabIndex = 0;
-            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -91,7 +90,6 @@
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Show Category:";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // NameNotesListBox
             // 
@@ -101,8 +99,9 @@
             this.NameNotesListBox.FormattingEnabled = true;
             this.NameNotesListBox.Location = new System.Drawing.Point(3, 33);
             this.NameNotesListBox.Name = "NameNotesListBox";
-            this.NameNotesListBox.Size = new System.Drawing.Size(242, 238);
+            this.NameNotesListBox.Size = new System.Drawing.Size(240, 238);
             this.NameNotesListBox.TabIndex = 2;
+            this.NameNotesListBox.SelectedIndexChanged += new System.EventHandler(this.NameNotesListBox_SelectedIndexChanged);
             // 
             // TextNoteRichTextBox
             // 
@@ -112,7 +111,7 @@
             this.TextNoteRichTextBox.Location = new System.Drawing.Point(0, 74);
             this.TextNoteRichTextBox.Name = "TextNoteRichTextBox";
             this.TextNoteRichTextBox.ReadOnly = true;
-            this.TextNoteRichTextBox.Size = new System.Drawing.Size(381, 236);
+            this.TextNoteRichTextBox.Size = new System.Drawing.Size(383, 236);
             this.TextNoteRichTextBox.TabIndex = 3;
             this.TextNoteRichTextBox.Text = "";
             // 
@@ -141,6 +140,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -157,18 +157,21 @@
             this.addNoteToolStripMenuItem.Name = "addNoteToolStripMenuItem";
             this.addNoteToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.addNoteToolStripMenuItem.Text = "Add Note";
+            this.addNoteToolStripMenuItem.Click += new System.EventHandler(this.AddPictureBox_Click);
             // 
             // editNoteToolStripMenuItem
             // 
             this.editNoteToolStripMenuItem.Name = "editNoteToolStripMenuItem";
             this.editNoteToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.editNoteToolStripMenuItem.Text = "Edit Note";
+            this.editNoteToolStripMenuItem.Click += new System.EventHandler(this.EditPictureBox_Click);
             // 
             // removeNoteToolStripMenuItem
             // 
             this.removeNoteToolStripMenuItem.Name = "removeNoteToolStripMenuItem";
             this.removeNoteToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.removeNoteToolStripMenuItem.Text = "Remove Note";
+            this.removeNoteToolStripMenuItem.Click += new System.EventHandler(this.RemovePictureBox_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -181,8 +184,9 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // TitleNoteLabel
             // 
@@ -231,14 +235,14 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Modified:";
             // 
-            // ModifiedDateTimePicker2
+            // ModifiedDateTimePicker
             // 
-            this.ModifiedDateTimePicker2.Enabled = false;
-            this.ModifiedDateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ModifiedDateTimePicker2.Location = new System.Drawing.Point(205, 47);
-            this.ModifiedDateTimePicker2.Name = "ModifiedDateTimePicker2";
-            this.ModifiedDateTimePicker2.Size = new System.Drawing.Size(92, 20);
-            this.ModifiedDateTimePicker2.TabIndex = 11;
+            this.ModifiedDateTimePicker.Enabled = false;
+            this.ModifiedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.ModifiedDateTimePicker.Location = new System.Drawing.Point(205, 47);
+            this.ModifiedDateTimePicker.Name = "ModifiedDateTimePicker";
+            this.ModifiedDateTimePicker.Size = new System.Drawing.Size(92, 20);
+            this.ModifiedDateTimePicker.TabIndex = 11;
             // 
             // EditPictureBox
             // 
@@ -249,6 +253,7 @@
             this.EditPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.EditPictureBox.TabIndex = 15;
             this.EditPictureBox.TabStop = false;
+            this.EditPictureBox.Click += new System.EventHandler(this.EditPictureBox_Click);
             // 
             // RemovePictureBox
             // 
@@ -259,7 +264,7 @@
             this.RemovePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.RemovePictureBox.TabIndex = 14;
             this.RemovePictureBox.TabStop = false;
-            this.RemovePictureBox.Click += new System.EventHandler(this.PictureBox3_Click);
+            this.RemovePictureBox.Click += new System.EventHandler(this.RemovePictureBox_Click);
             // 
             // AddPictureBox
             // 
@@ -270,6 +275,7 @@
             this.AddPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.AddPictureBox.TabIndex = 12;
             this.AddPictureBox.TabStop = false;
+            this.AddPictureBox.Click += new System.EventHandler(this.AddPictureBox_Click);
             // 
             // splitContainer1
             // 
@@ -292,11 +298,11 @@
             this.splitContainer1.Panel2.Controls.Add(this.CategoryNoteLabel);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.CreatedDateTimePicker);
-            this.splitContainer1.Panel2.Controls.Add(this.ModifiedDateTimePicker2);
+            this.splitContainer1.Panel2.Controls.Add(this.ModifiedDateTimePicker);
             this.splitContainer1.Panel2.Controls.Add(this.TextNoteRichTextBox);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Size = new System.Drawing.Size(635, 313);
-            this.splitContainer1.SplitterDistance = 247;
+            this.splitContainer1.SplitterDistance = 245;
             this.splitContainer1.TabIndex = 16;
             // 
             // panel1
@@ -320,6 +326,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "NoteApp";
             this.Text = "NoteApp";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NoteApp_FormClosed);
+            this.Load += new System.EventHandler(this.NoteApp_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).EndInit();
@@ -357,7 +365,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker CreatedDateTimePicker;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker ModifiedDateTimePicker2;
+        private System.Windows.Forms.DateTimePicker ModifiedDateTimePicker;
         private System.Windows.Forms.PictureBox AddPictureBox;
         private System.Windows.Forms.PictureBox RemovePictureBox;
         private System.Windows.Forms.PictureBox EditPictureBox;

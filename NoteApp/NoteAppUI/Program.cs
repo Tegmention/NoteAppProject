@@ -18,16 +18,22 @@ namespace NoteAppUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new NoteApp());
-            //Note note = new Note();
             //Project project = new Project();
+            //Note note = new Note();
+            //note.Name = "Заметка 1";
+            //note.Category = NotesCategory.Documentation;
+            //note.NoteText = "Текст 1 заметки";
             //project.Notes.Add(note);
             //note = new Note();
+            //note.Name = "Заметка 2";
+            //note.Category = NotesCategory.Documentation;
+            //note.NoteText = "Текст 2 заметки";
             //project.Notes.Add(note);
-            //ProjectManager.SaveToFile();
-            //project.ClearNote();
-            //project.LoadProject();
-            //Console.WriteLine(project.AttNote(0).Name);
-            //MessageBox.Show(project.AttNote(0).Name);
+            //project.Notes.RemoveAt(0);
+            //ProjectManager.SaveToFile(project);
+            //project.Notes.Clear();
+            //project = ProjectManager.LoadFromFile();
+            //MessageBox.Show(project.Notes[0].Name);
             //project.Notes.Clear();
         }
     }

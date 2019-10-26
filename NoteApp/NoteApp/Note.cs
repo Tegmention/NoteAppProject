@@ -49,7 +49,10 @@ namespace NoteApp
                 }
                 else
                 {
-                    _name = value.Substring(0,1).ToUpper()+(value.Length>1? value.Substring(1): "");
+                    if (value.Length!=0)
+                    {
+                        _name = value.Substring(0, 1).ToUpper() + (value.Length > 1 ? value.Substring(1) : "");
+                    }
                 }
             }
         }
