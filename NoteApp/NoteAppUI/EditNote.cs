@@ -67,6 +67,9 @@ namespace NoteAppUI
         /// Созраняет заголовок заметки,
         /// при изменении пользователем поля TitleTextBox
         /// и изменяет дату последнего редактирования заметки
+        /// Изменяет цвет поля TitleTextBox,
+        /// при символов > 50, красный,  
+        /// иначе белый
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -74,6 +77,20 @@ namespace NoteAppUI
         {   
             _note.Name = TitleTextBox.Text;
             _note.LastModTime = DateTime.Now;
+            ///Окрашивает поле TitleTextBox в красный и скрывает кнопку SaveButton если
+            ///символов > 50 и < 1
+            if (TitleTextBox.Text.Length > 50 || TitleTextBox.Text.Length == 0)
+            {
+                TitleTextBox.BackColor = Color.Red;
+                SaveButton.Visible = false;
+                ErrorLable.Visible = true;
+            }
+            if (TitleTextBox.BackColor == Color.Red & TitleTextBox.Text.Length < 50 & TitleTextBox.Text.Length > 0)
+            {
+                TitleTextBox.BackColor = Color.White;
+                SaveButton.Visible = true;
+                ErrorLable.Visible = false;
+            }
         }
 
         /// <summary>
@@ -87,25 +104,6 @@ namespace NoteAppUI
         {
             _note.NoteText = NoteRichTextBox.Text;
             _note.LastModTime = DateTime.Now;
-        }
-
-        /// <summary>
-        /// Изменяет цвет поля TitleTextBox,
-        /// при символов > 50, красный,  
-        /// иначе белый 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TitleTextBox_Leave(object sender, EventArgs e)
-        {
-            if (TitleTextBox.Text.Length > 50)
-            {
-                TitleTextBox.BackColor = Color.Red;
-            }
-            if (TitleTextBox.BackColor == Color.Red & TitleTextBox.Text.Length < 50)
-            {
-                TitleTextBox.BackColor = Color.White;
-            }
         }
 
         /// <summary>

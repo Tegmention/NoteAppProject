@@ -40,6 +40,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.RevokeButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.ErrorLable = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,10 +59,9 @@
             this.TitleTextBox.Location = new System.Drawing.Point(61, 8);
             this.TitleTextBox.MaxLength = 50;
             this.TitleTextBox.Name = "TitleTextBox";
-            this.TitleTextBox.Size = new System.Drawing.Size(347, 20);
+            this.TitleTextBox.Size = new System.Drawing.Size(377, 20);
             this.TitleTextBox.TabIndex = 1;
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged_1);
-            this.TitleTextBox.Leave += new System.EventHandler(this.TitleTextBox_Leave);
             // 
             // CategoryComboBox
             // 
@@ -77,7 +77,7 @@
             "Other"});
             this.CategoryComboBox.Location = new System.Drawing.Point(61, 36);
             this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(259, 21);
+            this.CategoryComboBox.Size = new System.Drawing.Size(289, 21);
             this.CategoryComboBox.TabIndex = 2;
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
@@ -135,7 +135,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NoteRichTextBox.Location = new System.Drawing.Point(12, 88);
             this.NoteRichTextBox.Name = "NoteRichTextBox";
-            this.NoteRichTextBox.Size = new System.Drawing.Size(408, 173);
+            this.NoteRichTextBox.Size = new System.Drawing.Size(438, 173);
             this.NoteRichTextBox.TabIndex = 13;
             this.NoteRichTextBox.Text = "";
             this.NoteRichTextBox.Leave += new System.EventHandler(this.NoteRichTextBox_Leave);
@@ -154,14 +154,14 @@
             this.groupBox1.Controls.Add(this.CreatedNoteDateTimePicker);
             this.groupBox1.Location = new System.Drawing.Point(12, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(408, 84);
+            this.groupBox1.Size = new System.Drawing.Size(438, 84);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             // 
             // RevokeButton
             // 
             this.RevokeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RevokeButton.Location = new System.Drawing.Point(345, 265);
+            this.RevokeButton.Location = new System.Drawing.Point(375, 265);
             this.RevokeButton.Name = "RevokeButton";
             this.RevokeButton.Size = new System.Drawing.Size(75, 23);
             this.RevokeButton.TabIndex = 15;
@@ -172,7 +172,7 @@
             // SaveButton
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveButton.Location = new System.Drawing.Point(264, 265);
+            this.SaveButton.Location = new System.Drawing.Point(294, 265);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 17;
@@ -180,15 +180,27 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // ErrorLable
+            // 
+            this.ErrorLable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ErrorLable.AutoSize = true;
+            this.ErrorLable.Location = new System.Drawing.Point(9, 270);
+            this.ErrorLable.Name = "ErrorLable";
+            this.ErrorLable.Size = new System.Drawing.Size(264, 13);
+            this.ErrorLable.TabIndex = 18;
+            this.ErrorLable.Text = "Ошибка в имени заметки. Невозможно сохранить";
+            this.ErrorLable.Visible = false;
+            // 
             // EditNote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 293);
+            this.ClientSize = new System.Drawing.Size(462, 293);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.RevokeButton);
             this.Controls.Add(this.NoteRichTextBox);
+            this.Controls.Add(this.ErrorLable);
             this.MinimumSize = new System.Drawing.Size(409, 200);
             this.Name = "EditNote";
             this.Text = "Add/EditNote";
@@ -196,6 +208,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -213,5 +226,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button RevokeButton;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Label ErrorLable;
     }
 }

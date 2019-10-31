@@ -15,6 +15,10 @@ namespace NoteApp
         /// Поле содержит список всех заметок проекта
         /// </summary>
         private List<Note> _notes = new List<Note>();
+
+        /// <summary>
+        /// Возвращает и задает список заметок
+        /// </summary>
         public List<Note> Notes
         {
             get

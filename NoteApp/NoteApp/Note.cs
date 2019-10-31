@@ -12,12 +12,17 @@ namespace NoteApp
     /// названии заметки, категории заметки, тексте заметки,
     /// времени создания и времени последнего изменения.
     /// </summary>
-    public class Note: ICloneable
+    public class Note : ICloneable
     {
         /// <summary>
         /// Поле хранит название заметки
         /// </summary>
         private string _name;
+
+        /// <summary>
+        /// Поле хранит текст заметки
+        /// </summary>
+        private string _noteText;
 
         /// <summary>
         /// Поле хранит категорию заметки 
@@ -38,20 +43,24 @@ namespace NoteApp
         /// Возвращает и задает название заметки
         /// Длинна имени не больше 50 символов
         /// </summary>
-        public string Name
+        public string Name //4 теста
         {
-            get { return _name; }
+            get { return _name; } //1 тест
             set
             {
-                if (value.Length > 50)
+                if (value.Length > 50)// 1 тест
                 {
                     throw new ArgumentException("Длинна названия заметки не должна превышать 50 символов");
                 }
                 else
                 {
-                    if (value.Length!=0)
+                    if (value.Length != 0)//1 тест
                     {
                         _name = value.Substring(0, 1).ToUpper() + (value.Length > 1 ? value.Substring(1) : "");
+                    }
+                    else//1 тест
+                    {
+                        throw new ArgumentException("Длинна названия заметки не должна ровнятся 0 символов");
                     }
                 }
             }
@@ -60,46 +69,56 @@ namespace NoteApp
         /// <summary>
         /// Возвращает и задает категорию заметки
         /// </summary>
-        public NotesCategory Category
+        public NotesCategory Category //2 теста
         {
-            get { return _category; }
-            set { _category = value; }
+            get { return _category; } //1 тест
+            set { _category = value; } //1 тест
         }
 
         /// <summary>
         /// Возвращает и задает текст заметки
         /// </summary>
-        public string NoteText { get; set; }
-
-        /// <summary>
-        /// Возвращает текст заметки
-        /// </summary>
-        public DateTime CreationTime
+        public string NoteText //2 теста
         {
-            get { return _creationTime; }
+            get
+            {
+                return _noteText; //1 тест
+            }
             set
             {
-                _creationTime = value;
+                _noteText = value; //1 тест
+            }
+        }
+
+        /// <summary>
+        /// Задает и возвращает время время создания заметки
+        /// </summary>
+        public DateTime CreationTime //2 теста
+        {
+            get { return _creationTime; } //1 тест
+            set
+            {
+                _creationTime = value; //1 тест
             }
         }
 
         /// <summary>
         /// Задает и возвращает время последнего изменения заметки
         /// </summary>
-        public DateTime LastModTime
+        public DateTime LastModTime //4 теста
         {
-            get { return _lastModTime; }
+            get { return _lastModTime; } //1 тест
             set
             {
-                if(value> DateTime.Now)
+                if(value> DateTime.Now) //1 тест
                 {
                     throw new ArgumentException("Дата сохранения превышает текущую дату");
                 }
-                if(value <_creationTime)
+                if(value <_creationTime) //1 тест
                 {
                     throw new ArgumentException("Дата сохранения меньше даты создания заметки");
                 }
-                else
+                else //1 тест
                 {
                     _lastModTime = value;
                 }
@@ -113,16 +132,16 @@ namespace NoteApp
         {
             _name = "Без названия";
             _category = NotesCategory.Job;
-            NoteText = "Текст заметки";
+            _noteText = "Текст заметки";
             _creationTime = DateTime.Now;
             _lastModTime = DateTime.Now;
         }
 
         /// <summary>
-        /// Метод возващает копию текущего экземпляра объекта
+        /// Метод возвращает копию текущего экземпляра объекта
         /// </summary>
         /// <returns></returns>
-        public object Clone()
+        public object Clone() //1 тест
         {
             return new Note { Name = this.Name, NoteText = this.NoteText,
                 Category = this.Category, CreationTime = this.CreationTime,
