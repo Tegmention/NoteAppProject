@@ -15,6 +15,7 @@ namespace NoteApp
         /// Поле содержит список всех заметок проекта
         /// </summary>
         private List<Note> _notes = new List<Note>();
+        private int _indexSelectedNote;
 
         /// <summary>
         /// Возвращает и задает список заметок
@@ -30,6 +31,36 @@ namespace NoteApp
                 _notes = value;
             }
                
+        }
+
+        /// <summary>
+        /// Возвращает и задает индекс текущей заметки
+        /// </summary>
+        public int IndexSelectedNote
+        {
+            get
+            {
+                return _indexSelectedNote;
+            }
+            set 
+            {
+                _indexSelectedNote = value;
+            }
+        }
+
+        public void ListSort()
+        {
+            NoteComparer sort = new NoteComparer();
+            _notes.Sort(sort);
+        }
+        public void ListSort(NotesCategory category)
+        {
+            NoteComparer sort = new NoteComparer();
+            _notes.Sort(sort);
+            return _notes.FindAll(
+                delegate ()
+                );
+           // _notes.
         }
     }
 }

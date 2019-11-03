@@ -75,8 +75,11 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void TitleTextBox_TextChanged_1(object sender, EventArgs e)
         {   
-            _note.Name = TitleTextBox.Text;
-            _note.LastModTime = DateTime.Now;
+            if(TitleTextBox.Text != "")
+            {
+                _note.Name = TitleTextBox.Text;
+                _note.LastModTime = DateTime.Now;
+            }
             ///Окрашивает поле TitleTextBox в красный и скрывает кнопку SaveButton если
             ///символов > 50 и < 1
             if (TitleTextBox.Text.Length > 50 || TitleTextBox.Text.Length == 0)

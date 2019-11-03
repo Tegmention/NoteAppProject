@@ -109,8 +109,23 @@ namespace NoteAppUnitTests
         [Test(Description = "Позитивный тест интерфейса ICloneable")]
         public void Test_Interface_ICloneable()
         {
+            //var expected = true;
+            //var exnote = (Note)_note.Clone();
+            //var actual = false;
+            //if(_note.Name == exnote.Name && _note.Category == exnote.Category &&
+            //    _note.NoteText == exnote.NoteText && _note.CreationTime == exnote.CreationTime &&
+            //    _note.LastModTime == exnote.LastModTime)
+            //{
+            //    actual = true;
+            //}
+            //var actual = _note.Equals((Note)_note.Clone());
             var expected = true;
-            var actual = _note.Equals((Note)_note.Clone());
+            var actual = false;
+            actual = _note.Clone().Equals(_note);
+            if(_note == (Note)_note.Clone())
+            {
+                actual = true;
+            }
             Assert.AreEqual(expected, actual, "Метод Clone не возвращает копию заметки");
         }
 

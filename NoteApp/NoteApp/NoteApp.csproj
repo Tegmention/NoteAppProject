@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Note.cs" />
+    <Compile Include="NoteComparer.cs" />
     <Compile Include="NotesCategory.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectManager.cs" />

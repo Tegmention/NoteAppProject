@@ -43,11 +43,13 @@ namespace NoteAppUI
         private void NoteApp_Load(object sender, EventArgs e)
         {
             _project = ProjectManager.LoadFromFile();
+            _project.ListSort();
             for (var i = 0; i < _project.Notes.Count; i++)
             {
                 NameNotesListBox.Items.Add(_project.Notes[i].Name);
             }
-            NameNotesListBox.SelectedIndex = 0;
+            NameNotesListBox.SelectedIndex = _project.IndexSelectedNote;
+            this.KeyDown += NoteApp_KeyDown;
             ShowNote();
         }
 
@@ -86,6 +88,7 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void NameNotesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            _project.IndexSelectedNote = NameNotesListBox.SelectedIndex;
             ShowNote();
         }
 
@@ -130,8 +133,11 @@ namespace NoteAppUI
             if (reply == DialogResult.OK)
             {
                 NewNote = edit.Note;
-                _project.Notes.Add(NewNote);
-                NameNotesListBox.Items.Add(NewNote.Name);
+                //Выставлям в начало, чтобы последне измененные были выше
+                _project.Notes.Insert(0, NewNote);
+                NameNotesListBox.Items.Insert(0,NewNote.Name);
+                NameNotesListBox.SelectedIndex = 0;
+                //Сохраняем список заметок в файл
                 ProjectManager.SaveToFile(_project);
             }
         }
@@ -151,10 +157,16 @@ namespace NoteAppUI
             }
             else
             {
-                var SelectedIndex = NameNotesListBox.SelectedIndex;
-                NameNotesListBox.Items.RemoveAt(SelectedIndex);
-                _project.Notes.RemoveAt(SelectedIndex);
-                ProjectManager.SaveToFile(_project);
+                //Вызов диалогового окна подтверждения удаления заметки
+                DialogResult result = MessageBox.Show("Удалить заметку?", "Подтвердите действие", MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question);
+                if (result == DialogResult.OK)
+                {
+                    var SelectedIndex = NameNotesListBox.SelectedIndex;
+                    NameNotesListBox.Items.RemoveAt(SelectedIndex);
+                    _project.Notes.RemoveAt(SelectedIndex);
+                    ProjectManager.SaveToFile(_project);
+                }
             }
         }
 
@@ -182,8 +194,11 @@ namespace NoteAppUI
                 var reply = edit.ShowDialog();
                 if (reply == DialogResult.OK)
                 {
-                    _project.Notes[SelectedIndex] = edit.Note;
-                    NameNotesListBox.Items[SelectedIndex] = edit.Note.Name;
+                    _project.Notes.RemoveAt(SelectedIndex);
+                    _project.Notes.Insert(0, edit.Note);
+                    NameNotesListBox.Items.RemoveAt(SelectedIndex);
+                    NameNotesListBox.Items.Insert(0, edit.Note.Name);
+                    NameNotesListBox.SelectedIndex = 0;
                 }
             }
         }
@@ -197,6 +212,20 @@ namespace NoteAppUI
         private void NoteApp_FormClosed(object sender, FormClosedEventArgs e)
         {
             ProjectManager.SaveToFile(_project);
+        }
+
+        /// <summary>
+        /// Вызывает удаление заметки при нажатии клавиши Delete
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NoteApp_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && NameNotesListBox.SelectedIndex != -1)
+            {
+                //Вызов удаления заметки
+                RemovePictureBox_Click(sender, e);
+            }
         }
     }
 }

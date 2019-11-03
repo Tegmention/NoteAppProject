@@ -24,7 +24,9 @@ namespace NoteAppUI
             note.Category = NotesCategory.Documentation;
             note.NoteText = "Текст 1 заметки";
             project.Notes.Add(note);
-            //MessageBox.Show();
+            //MessageBox.Show(note  );
+            //MessageBox.Show(note.Clone().ToString());
+            
             //note = new Note();
             //note.Name = "Заметка 2";
             //note.Category = NotesCategory.Documentation;

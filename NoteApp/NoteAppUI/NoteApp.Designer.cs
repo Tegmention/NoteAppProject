@@ -323,11 +323,13 @@
             this.ClientSize = new System.Drawing.Size(635, 340);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "NoteApp";
             this.Text = "NoteApp";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NoteApp_FormClosed);
             this.Load += new System.EventHandler(this.NoteApp_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NoteApp_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).EndInit();
