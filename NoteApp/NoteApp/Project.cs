@@ -53,14 +53,14 @@ namespace NoteApp
             NoteComparer sort = new NoteComparer();
             _notes.Sort(sort);
         }
-        public void ListSort(NotesCategory category)
+        public List<Note> ListSort(NotesCategory category)
         {
-            NoteComparer sort = new NoteComparer();
-            _notes.Sort(sort);
             return _notes.FindAll(
-                delegate ()
+                delegate (Note note)
+                {
+                    return note.Category == category;
+                }
                 );
-           // _notes.
         }
     }
 }

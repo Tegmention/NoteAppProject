@@ -76,11 +76,13 @@
             "People",
             "Documentation",
             "Finance",
-            "Other"});
+            "Other",
+            "All"});
             this.CategoryComboBox.Location = new System.Drawing.Point(88, 6);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(155, 21);
             this.CategoryComboBox.TabIndex = 0;
+            this.CategoryComboBox.SelectionChangeCommitted += new System.EventHandler(this.CategoryComboBox_SelectionChangeCommitted);
             // 
             // label1
             // 
