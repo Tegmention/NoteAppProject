@@ -17,7 +17,7 @@ namespace NoteAppUI
     /// получает информацию о заметке от пользователя,
     /// отправляет полученные данные по запросу
     /// </summary>
-    public partial class EditNote : Form
+    public partial class EditNoteForm : Form
     {
         /// <summary>
         /// Поле хранит информацию о заметке
@@ -28,8 +28,7 @@ namespace NoteAppUI
         /// Возвращает и задает информацию о заметке
         /// </summary>
         public Note Note
-        {
-            get
+        {   get
             {
                 return _note;
             }
@@ -58,7 +57,7 @@ namespace NoteAppUI
         /// <summary>
         /// Инициализация формы
         /// </summary>
-        public EditNote()
+        public EditNoteForm()
         {
             InitializeComponent();
         }
@@ -84,15 +83,15 @@ namespace NoteAppUI
             ///символов > 50 и < 1
             if (TitleTextBox.Text.Length > 50 || TitleTextBox.Text.Length == 0)
             {
-                TitleTextBox.BackColor = Color.Red;
+                TitleTextBox.BackColor = Color.LightSalmon;
                 SaveButton.Visible = false;
-                ErrorLable.Visible = true;
+                ErrorLabel.Visible = true;
             }
-            if (TitleTextBox.BackColor == Color.Red & TitleTextBox.Text.Length < 50 & TitleTextBox.Text.Length > 0)
+            if (TitleTextBox.Text.Length < 50 & TitleTextBox.Text.Length > 0)
             {
                 TitleTextBox.BackColor = Color.White;
                 SaveButton.Visible = true;
-                ErrorLable.Visible = false;
+                ErrorLabel.Visible = false;
             }
         }
 
@@ -115,7 +114,7 @@ namespace NoteAppUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SaveButton_Click(object sender, EventArgs e)
+        private void OKButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             this.Close();
@@ -127,8 +126,9 @@ namespace NoteAppUI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RevokeButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 

@@ -63,9 +63,9 @@ namespace NoteAppUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Добавить {
+        internal static System.Drawing.Bitmap action_exit_close_remove_13915_1 {
             get {
-                object obj = ResourceManager.GetObject("Добавить", resourceCulture);
+                object obj = ResourceManager.GetObject("action_exit_close_remove_13915-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace NoteAppUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Редактировать2_0 {
+        internal static System.Drawing.Bitmap add_insert_new_13969 {
             get {
-                object obj = ResourceManager.GetObject("Редактировать2.0", resourceCulture);
+                object obj = ResourceManager.GetObject("add_insert_new_13969", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace NoteAppUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Удалить {
+        internal static System.Drawing.Bitmap EDIT {
             get {
-                object obj = ResourceManager.GetObject("Удалить", resourceCulture);
+                object obj = ResourceManager.GetObject("EDIT", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

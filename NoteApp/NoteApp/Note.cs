@@ -71,9 +71,15 @@ namespace NoteApp
         /// </summary>
         public NotesCategory Category //2 теста
         {
-            get { return _category; } //1 тест
-            set { _category = value; } //1 тест
-        }
+            get
+            {
+                return _category;
+            }
+            set
+            {
+                _category = value;
+            }
+        } 
 
         /// <summary>
         /// Возвращает и задает текст заметки
@@ -82,23 +88,26 @@ namespace NoteApp
         {
             get
             {
-                return _noteText; //1 тест
+                return _noteText;
             }
             set
             {
-                _noteText = value; //1 тест
+                _noteText = value;
             }
-        }
+        } 
 
         /// <summary>
         /// Задает и возвращает время время создания заметки
         /// </summary>
         public DateTime CreationTime //2 теста
         {
-            get { return _creationTime; } //1 тест
+            get
+            {
+                return _creationTime;
+            }
             set
             {
-                _creationTime = value; //1 тест
+                _creationTime = value;
             }
         }
 
@@ -117,6 +126,7 @@ namespace NoteApp
                 if(value <_creationTime) //1 тест
                 {
                     throw new ArgumentException("Дата сохранения меньше даты создания заметки");
+
                 }
                 else //1 тест
                 {

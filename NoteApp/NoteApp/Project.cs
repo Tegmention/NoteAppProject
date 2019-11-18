@@ -20,7 +20,7 @@ namespace NoteApp
         /// <summary>
         /// Возвращает и задает список заметок
         /// </summary>
-        public List<Note> Notes
+        public List<Note> Notes //2 теста
         {
             get
             {
@@ -30,36 +30,43 @@ namespace NoteApp
             {
                 _notes = value;
             }
-               
         }
 
         /// <summary>
         /// Возвращает и задает индекс текущей заметки
         /// </summary>
-        public int IndexSelectedNote
+        public int IndexSelectedNote //2 теста
         {
             get
             {
                 return _indexSelectedNote;
             }
-            set 
+            set
             {
                 _indexSelectedNote = value;
             }
         }
 
-        public void ListSort()
+        /// <summary>
+        /// Сортирует список по дате последнего изменения
+        /// </summary>
+        public void ListSort() //1 тест
         {
             NoteComparer sort = new NoteComparer();
             _notes.Sort(sort);
         }
-        public List<Note> ListSort(NotesCategory category)
+        /// <summary>
+        /// Возвращает часть списка _notes соответствующей категории
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public List<Note> ListSort(NotesCategory category) //1тест
         {
             return _notes.FindAll(
                 delegate (Note note)
-                {
-                    return note.Category == category;
-                }
+                    {
+                        return note.Category == category;
+                    }
                 );
         }
     }

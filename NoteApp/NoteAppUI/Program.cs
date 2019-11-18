@@ -17,13 +17,13 @@ namespace NoteAppUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NoteApp());
-            Project project = new Project();
-            Note note = new Note();
-            note.Name = "Заметка 1";
-            note.Category = NotesCategory.Documentation;
-            note.NoteText = "Текст 1 заметки";
-            project.Notes.Add(note);
+            Application.Run(new NoteAppForm());
+            //Project project = new Project();
+            //Note note = new Note();
+            //note.Name = "Заметка 1";
+            //note.Category = NotesCategory.Documentation;
+            //note.NoteText = "Текст 1 заметки";
+            //project.Notes.Add(note);
             //MessageBox.Show(note  );
             //MessageBox.Show(note.Clone().ToString());
             

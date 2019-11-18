@@ -1,6 +1,6 @@
 ﻿namespace NoteAppUI
 {
-    partial class NoteApp
+    partial class NoteAppForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteAppForm));
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.NameNotesListBox = new System.Windows.Forms.ListBox();
@@ -47,20 +48,20 @@
             this.CreatedDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.ModifiedDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.EditPictureBox = new System.Windows.Forms.PictureBox();
-            this.RemovePictureBox = new System.Windows.Forms.PictureBox();
-            this.AddPictureBox = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.AddPictureBox = new System.Windows.Forms.PictureBox();
+            this.EditPictureBox = new System.Windows.Forms.PictureBox();
+            this.RemovePictureBox = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // CategoryComboBox
@@ -102,7 +103,7 @@
             this.NameNotesListBox.Location = new System.Drawing.Point(3, 33);
             this.NameNotesListBox.Name = "NameNotesListBox";
             this.NameNotesListBox.Size = new System.Drawing.Size(240, 238);
-            this.NameNotesListBox.TabIndex = 2;
+            this.NameNotesListBox.TabIndex = 1;
             this.NameNotesListBox.SelectedIndexChanged += new System.EventHandler(this.NameNotesListBox_SelectedIndexChanged);
             // 
             // TextNoteRichTextBox
@@ -114,7 +115,7 @@
             this.TextNoteRichTextBox.Name = "TextNoteRichTextBox";
             this.TextNoteRichTextBox.ReadOnly = true;
             this.TextNoteRichTextBox.Size = new System.Drawing.Size(383, 236);
-            this.TextNoteRichTextBox.TabIndex = 3;
+            this.TextNoteRichTextBox.TabIndex = 5;
             this.TextNoteRichTextBox.Text = "";
             // 
             // menuStrip1
@@ -140,7 +141,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -225,7 +226,7 @@
             this.CreatedDateTimePicker.Location = new System.Drawing.Point(56, 47);
             this.CreatedDateTimePicker.Name = "CreatedDateTimePicker";
             this.CreatedDateTimePicker.Size = new System.Drawing.Size(92, 20);
-            this.CreatedDateTimePicker.TabIndex = 9;
+            this.CreatedDateTimePicker.TabIndex = 3;
             this.CreatedDateTimePicker.Value = new System.DateTime(2019, 10, 13, 23, 45, 41, 0);
             // 
             // label5
@@ -244,40 +245,7 @@
             this.ModifiedDateTimePicker.Location = new System.Drawing.Point(205, 47);
             this.ModifiedDateTimePicker.Name = "ModifiedDateTimePicker";
             this.ModifiedDateTimePicker.Size = new System.Drawing.Size(92, 20);
-            this.ModifiedDateTimePicker.TabIndex = 11;
-            // 
-            // EditPictureBox
-            // 
-            this.EditPictureBox.Image = global::NoteAppUI.Properties.Resources.Редактировать2_0;
-            this.EditPictureBox.Location = new System.Drawing.Point(30, 0);
-            this.EditPictureBox.Name = "EditPictureBox";
-            this.EditPictureBox.Size = new System.Drawing.Size(23, 26);
-            this.EditPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.EditPictureBox.TabIndex = 15;
-            this.EditPictureBox.TabStop = false;
-            this.EditPictureBox.Click += new System.EventHandler(this.EditPictureBox_Click);
-            // 
-            // RemovePictureBox
-            // 
-            this.RemovePictureBox.Image = global::NoteAppUI.Properties.Resources.Удалить;
-            this.RemovePictureBox.Location = new System.Drawing.Point(59, 0);
-            this.RemovePictureBox.Name = "RemovePictureBox";
-            this.RemovePictureBox.Size = new System.Drawing.Size(24, 26);
-            this.RemovePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.RemovePictureBox.TabIndex = 14;
-            this.RemovePictureBox.TabStop = false;
-            this.RemovePictureBox.Click += new System.EventHandler(this.RemovePictureBox_Click);
-            // 
-            // AddPictureBox
-            // 
-            this.AddPictureBox.Image = global::NoteAppUI.Properties.Resources.Добавить;
-            this.AddPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.AddPictureBox.Name = "AddPictureBox";
-            this.AddPictureBox.Size = new System.Drawing.Size(24, 26);
-            this.AddPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.AddPictureBox.TabIndex = 12;
-            this.AddPictureBox.TabStop = false;
-            this.AddPictureBox.Click += new System.EventHandler(this.AddPictureBox_Click);
+            this.ModifiedDateTimePicker.TabIndex = 4;
             // 
             // splitContainer1
             // 
@@ -318,25 +286,56 @@
             this.panel1.Size = new System.Drawing.Size(84, 26);
             this.panel1.TabIndex = 16;
             // 
-            // NoteApp
+            // AddPictureBox
+            // 
+            this.AddPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("AddPictureBox.Image")));
+            this.AddPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.AddPictureBox.Name = "AddPictureBox";
+            this.AddPictureBox.Size = new System.Drawing.Size(24, 26);
+            this.AddPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.AddPictureBox.TabIndex = 12;
+            this.AddPictureBox.TabStop = false;
+            this.AddPictureBox.Click += new System.EventHandler(this.AddPictureBox_Click);
+            // 
+            // EditPictureBox
+            // 
+            this.EditPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("EditPictureBox.Image")));
+            this.EditPictureBox.Location = new System.Drawing.Point(30, 0);
+            this.EditPictureBox.Name = "EditPictureBox";
+            this.EditPictureBox.Size = new System.Drawing.Size(23, 26);
+            this.EditPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EditPictureBox.TabIndex = 15;
+            this.EditPictureBox.TabStop = false;
+            this.EditPictureBox.Click += new System.EventHandler(this.EditPictureBox_Click);
+            // 
+            // RemovePictureBox
+            // 
+            this.RemovePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("RemovePictureBox.Image")));
+            this.RemovePictureBox.Location = new System.Drawing.Point(59, 0);
+            this.RemovePictureBox.Name = "RemovePictureBox";
+            this.RemovePictureBox.Size = new System.Drawing.Size(25, 26);
+            this.RemovePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.RemovePictureBox.TabIndex = 14;
+            this.RemovePictureBox.TabStop = false;
+            this.RemovePictureBox.Click += new System.EventHandler(this.RemovePictureBox_Click);
+            // 
+            // NoteAppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(635, 340);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "NoteApp";
+            this.Name = "NoteAppForm";
             this.Text = "NoteApp";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NoteApp_FormClosed);
             this.Load += new System.EventHandler(this.NoteApp_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NoteApp_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -344,6 +343,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EditPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

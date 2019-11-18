@@ -57,5 +57,41 @@ namespace NoteAppUnitTests
 
         }
 
+        [Test(Description = "Позитивный тест метода ListSort без входных данных ")]
+        public void Test_ListSort()
+        {
+            var expected = true;
+            var actual = false;
+            var noteOne = new Note();
+            var noteTwo = new Note();
+            _project.Notes.Add(noteOne);
+            _project.Notes.Add(noteTwo);
+            _project.ListSort();
+            if (_project.Notes[0] == noteOne)
+            {
+                actual = true;
+            }
+            Assert.AreEqual(expected, actual, "ListSort не возвращает отсортированный по дате модификации список заметок");
+        }
+
+        [Test(Description = "Позитивный тест метода ListSort с входным NotesCategory ")]
+        public void Test_ListSort_Category()
+        {
+            var expected = true;
+            var actual = false;
+            var noteOne = new Note();
+            noteOne.Category = NotesCategory.Other;
+            var noteTwo = new Note();
+            _project.Notes.Add(noteTwo);
+            _project.Notes.Add(noteOne);
+            _project.Notes = _project.ListSort(NotesCategory.Other);
+            var expectedList = new Project();
+            expectedList.Notes.Add(noteOne);
+            if(_project.Notes[0]==noteOne)
+            {
+                actual = true;
+            }
+            Assert.AreEqual(expected, actual,"ListSort не возвращает отсортированный по дате модификации список заметок");
+        }
     }
 }

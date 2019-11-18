@@ -1,6 +1,6 @@
 ﻿namespace NoteAppUI
 {
-    partial class EditNote
+    partial class EditNoteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.RevokeButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.ErrorLable = new System.Windows.Forms.Label();
+            this.ErrorLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -136,7 +136,7 @@
             this.NoteRichTextBox.Location = new System.Drawing.Point(12, 88);
             this.NoteRichTextBox.Name = "NoteRichTextBox";
             this.NoteRichTextBox.Size = new System.Drawing.Size(438, 173);
-            this.NoteRichTextBox.TabIndex = 13;
+            this.NoteRichTextBox.TabIndex = 3;
             this.NoteRichTextBox.Text = "";
             this.NoteRichTextBox.Leave += new System.EventHandler(this.NoteRichTextBox_Leave);
             // 
@@ -164,10 +164,10 @@
             this.RevokeButton.Location = new System.Drawing.Point(375, 265);
             this.RevokeButton.Name = "RevokeButton";
             this.RevokeButton.Size = new System.Drawing.Size(75, 23);
-            this.RevokeButton.TabIndex = 15;
+            this.RevokeButton.TabIndex = 5;
             this.RevokeButton.Text = "Cancel";
             this.RevokeButton.UseVisualStyleBackColor = true;
-            this.RevokeButton.Click += new System.EventHandler(this.RevokeButton_Click);
+            this.RevokeButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // SaveButton
             // 
@@ -175,35 +175,36 @@
             this.SaveButton.Location = new System.Drawing.Point(294, 265);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveButton.TabIndex = 17;
+            this.SaveButton.TabIndex = 4;
             this.SaveButton.Text = "ОК";
             this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            this.SaveButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
-            // ErrorLable
+            // ErrorLabel
             // 
-            this.ErrorLable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ErrorLable.AutoSize = true;
-            this.ErrorLable.Location = new System.Drawing.Point(9, 270);
-            this.ErrorLable.Name = "ErrorLable";
-            this.ErrorLable.Size = new System.Drawing.Size(264, 13);
-            this.ErrorLable.TabIndex = 18;
-            this.ErrorLable.Text = "Ошибка в имени заметки. Невозможно сохранить";
-            this.ErrorLable.Visible = false;
+            this.ErrorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ErrorLabel.AutoSize = true;
+            this.ErrorLabel.Location = new System.Drawing.Point(9, 270);
+            this.ErrorLabel.Name = "ErrorLabel";
+            this.ErrorLabel.Size = new System.Drawing.Size(171, 13);
+            this.ErrorLabel.TabIndex = 18;
+            this.ErrorLabel.Text = "Error in note name. Unable to save";
+            this.ErrorLabel.Visible = false;
             // 
-            // EditNote
+            // EditNoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(462, 293);
+            this.ControlBox = false;
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.RevokeButton);
             this.Controls.Add(this.NoteRichTextBox);
-            this.Controls.Add(this.ErrorLable);
+            this.Controls.Add(this.ErrorLabel);
             this.MinimumSize = new System.Drawing.Size(409, 200);
-            this.Name = "EditNote";
-            this.Text = "Add/EditNote";
+            this.Name = "EditNoteForm";
+            this.Text = "Add/Edit Note";
             this.Load += new System.EventHandler(this.EditNote_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -226,6 +227,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button RevokeButton;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Label ErrorLable;
+        private System.Windows.Forms.Label ErrorLabel;
     }
 }

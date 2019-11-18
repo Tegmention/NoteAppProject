@@ -1,6 +1,6 @@
 ﻿namespace NoteAppUI
 {
-    partial class About
+    partial class AboutForm
     {
         /// <summary>
         /// Required designer variable.

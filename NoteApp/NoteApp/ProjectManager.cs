@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+
+
 namespace NoteApp
 {
     /// <summary>
@@ -17,18 +19,18 @@ namespace NoteApp
         /// <summary>
         /// Путь для хранения файла со списком заметок
         /// </summary>
-        private static string _fileName =
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            + @"/NoteApp.notes";
+        //private static string _fileName =
+        //    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+        //    + @"/NoteApp.notes";
 
         /// <summary>
         /// Статический метод сохранения данных (сиреализации)
         /// </summary>
         /// <param name="project">Список хранящий все заметки</param>
-        public static void SaveToFile(Project project)
+        public static void SaveToFile(Project project,string fileName)
         {
             JsonSerializer serializer = new JsonSerializer();
-            using (StreamWriter sw = new StreamWriter(_fileName))
+            using (StreamWriter sw = new StreamWriter(fileName))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 serializer.Serialize(writer, project);
@@ -39,11 +41,11 @@ namespace NoteApp
         /// Статический метод загрузки данных (дисериализация)
         /// </summary>
         /// <returns>Возвращает список заметок объект Project </returns>
-        public static Project LoadFromFile()
+        public static Project LoadFromFile(string fileName)
         {
             Project project = null;
             JsonSerializer serializer = new JsonSerializer();
-            using (StreamReader sr = new StreamReader(_fileName))
+            using (StreamReader sr = new StreamReader(fileName))
             using (JsonReader reader = new JsonTextReader(sr))
             {
                return project = (Project)serializer.Deserialize<Project>(reader);

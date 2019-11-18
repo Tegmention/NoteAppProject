@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoteApp;
 
@@ -17,21 +11,27 @@ namespace NoteAppUI
     /// удалять заметки. 
     /// Реализован вызов методов 2 способами
     /// </summary>
-    public partial class NoteApp : Form
+    public partial class NoteAppForm : Form
     {
         /// <summary>
         /// Поле хранит текущий проект приложения
         /// </summary>
         private Project _project = new Project();
+
         /// <summary>
-        /// Поле хранит текущий список заметок(Доп)
+        /// Поле хранит список отображаемых заметок
         /// </summary>
-        private List<Note> _notes = new List<Note>();
+        private List<Note> _viewNotes = new List<Note>();
+
+        private string _fileName =
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+            + @"/NoteApp.notes";
+        //private string _fileName = "../../../NoteAppUnitTests/Resources/TestNoteApp.json";
 
         /// <summary>
         /// Иницилизация формы
         /// </summary>
-        public NoteApp()
+        public NoteAppForm()
         {
             InitializeComponent();
         }
@@ -46,11 +46,11 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void NoteApp_Load(object sender, EventArgs e)
         {
-            _project = ProjectManager.LoadFromFile();
+            _project = ProjectManager.LoadFromFile(_fileName);
+            //Предусмотреть случай с пустым списком
             _project.ListSort();
-            WriteListBox(_project.Notes);
-            //Доп
-            _notes = _project.Notes;
+            AddNotesToListBox(_project.Notes);
+            _viewNotes = _project.Notes;
 
             NameNotesListBox.SelectedIndex = _project.IndexSelectedNote;
             //При загрузке отображены все категории
@@ -75,9 +75,7 @@ namespace NoteAppUI
             else
             {
                 //Доп
-                var note = _notes[NameNotesListBox.SelectedIndex];
-
-                //Note note = notes[NameNotesListBox.SelectedIndex];
+                var note = _viewNotes[NameNotesListBox.SelectedIndex];
                 //Отображаем данные о заметке
                 TitleNoteLabel.Text = note.Name;
                 CategoryNoteLabel.Text = "Category: " + note.Category;
@@ -109,8 +107,8 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var about = new About();
-            about.Show();
+            var about = new AboutForm();
+            about.ShowDialog();
         }
 
         /// <summary>
@@ -135,29 +133,33 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void AddPictureBox_Click(object sender, EventArgs e)
         {
-            var NewNote = new Note();
-            var edit = new EditNote();
-            edit.Note = NewNote;
+            var newNote = new Note();
+            var edit = new EditNoteForm();
+            edit.Note = newNote;
             var reply = edit.ShowDialog();
             if (reply == DialogResult.OK)
             {
-                NewNote = edit.Note;
-                //Выставлям в начало, чтобы последне измененные были выше
-                _project.Notes.Insert(0, NewNote);
+                newNote = edit.Note;
+                //Вставлям в начало, чтобы последне измененные были выше
+                _project.Notes.Insert(0, newNote);
                 if ((string)CategoryComboBox.SelectedItem == null || (string)CategoryComboBox.SelectedItem == "All")
                 {
-                    NameNotesListBox.Items.Insert(0, NewNote.Name);
+                    NameNotesListBox.Items.Insert(0, newNote.Name);
                 }
                 else
                 {
-                    var category = (NotesCategory)Enum.Parse(typeof(NotesCategory), (string)CategoryComboBox.SelectedItem);
-                    _notes = _project.ListSort(category);
-                    NameNotesListBox.Items.Clear();
-                    WriteListBox(_notes);
+                    AddSortListToLitsBox();
                 }
-                NameNotesListBox.SelectedIndex = 0;
+                if (NameNotesListBox.Items.Count != 0)
+                {
+                    NameNotesListBox.SelectedIndex = 0;
+                }
+                else
+                {
+                    NameNotesListBox.SelectedIndex = -1;
+                }
                 //Сохраняем список заметок в файл
-                ProjectManager.SaveToFile(_project);
+                ProjectManager.SaveToFile(_project,_fileName);
             }
         }
        
@@ -172,29 +174,34 @@ namespace NoteAppUI
         {
             if (NameNotesListBox.Items.Count == 0)
             {
-                MessageBox.Show("Список заметок пуст!");
+                MessageBox.Show("The list of notes is empty!");
             }
             else
             {
-                //Вызов диалогового окна подтверждения удаления заметки
-                var result = MessageBox.Show("Удалить заметку?", "Подтвердите действие", MessageBoxButtons.OKCancel,
-                    MessageBoxIcon.Question);
-                if (result == DialogResult.OK)
+                if (NameNotesListBox.SelectedIndex == -1)
                 {
-                    var SelectedIndex = NameNotesListBox.SelectedIndex;
-                    _project.Notes.Remove(_notes[SelectedIndex]);
-                    if ((string)CategoryComboBox.SelectedItem == null || (string)CategoryComboBox.SelectedItem == "All")
+                    MessageBox.Show("The note is not selected");
+                }
+                else
+                {
+                    //Вызов диалогового окна подтверждения удаления заметки
+                    var result = MessageBox.Show("Delete a note?", "Confirm the action", MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Question);
+                    if (result == DialogResult.OK)
                     {
-                        NameNotesListBox.Items.RemoveAt(SelectedIndex);
+                        var selectedIndex = NameNotesListBox.SelectedIndex;
+                        _project.Notes.Remove(_viewNotes[selectedIndex]);
+                        if ((string)CategoryComboBox.SelectedItem == null || (string)CategoryComboBox.SelectedItem == "All")
+                        {
+                            NameNotesListBox.Items.RemoveAt(selectedIndex);
+                        }
+                        else
+                        {
+                            AddSortListToLitsBox();
+                        }
+                        ShowNote();
+                        ProjectManager.SaveToFile(_project,_fileName);
                     }
-                    else
-                    {
-                        var category = (NotesCategory)Enum.Parse(typeof(NotesCategory), (string)CategoryComboBox.SelectedItem);
-                        _notes = _project.ListSort(category);
-                        NameNotesListBox.Items.Clear();
-                        WriteListBox(_notes);
-                    }
-                    ProjectManager.SaveToFile(_project);
                 }
             }
         }
@@ -212,33 +219,44 @@ namespace NoteAppUI
         {
             if (NameNotesListBox.Items.Count == 0)
             {
-                MessageBox.Show("Список заметок пуст!");
+                MessageBox.Show("The list of notes is empty!");
             }
             else
             {
-                var SelectedIndex = NameNotesListBox.SelectedIndex;
-                var NewNote = _notes[SelectedIndex].Clone();
-                var edit = new EditNote();
-                edit.Note = (Note)NewNote;
-                var reply = edit.ShowDialog();
-                if (reply == DialogResult.OK)
+                if(NameNotesListBox.SelectedIndex == -1)
                 {
-                    _project.Notes.Remove(_notes[SelectedIndex]);
-                    _project.Notes.Insert(0, edit.Note);
+                    MessageBox.Show("The note is not selected");
+                }
+                else
+                {
+                    var selectedIndex = NameNotesListBox.SelectedIndex;
+                    var NewNote = _viewNotes[selectedIndex].Clone();
+                    var edit = new EditNoteForm();
+                    edit.Note = (Note)NewNote;
+                    var reply = edit.ShowDialog();
+                    if (reply == DialogResult.OK)
+                    {
+                        _project.Notes.Remove(_viewNotes[selectedIndex]);
+                        _project.Notes.Insert(0, edit.Note);
 
-                    if ((string)CategoryComboBox.SelectedItem == null || (string)CategoryComboBox.SelectedItem == "All")
-                    {
-                        NameNotesListBox.Items.RemoveAt(SelectedIndex);
-                        NameNotesListBox.Items.Insert(0, edit.Note.Name);
+                        if ((string)CategoryComboBox.SelectedItem == null || (string)CategoryComboBox.SelectedItem == "All")
+                        {
+                            NameNotesListBox.Items.RemoveAt(selectedIndex);
+                            NameNotesListBox.Items.Insert(0, edit.Note.Name);
+                        }
+                        else
+                        {
+                            AddSortListToLitsBox();
+                        }
+                        if (NameNotesListBox.Items.Count != 0)
+                        {
+                            NameNotesListBox.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            NameNotesListBox.SelectedIndex = -1;
+                        }
                     }
-                    else
-                    {
-                        var category = (NotesCategory)Enum.Parse(typeof(NotesCategory), (string)CategoryComboBox.SelectedItem);
-                        _notes = _project.ListSort(category);
-                        NameNotesListBox.Items.Clear();
-                        WriteListBox(_notes);
-                    }
-                    NameNotesListBox.SelectedIndex = 0;
                 }
             }
         }
@@ -251,7 +269,7 @@ namespace NoteAppUI
         /// <param name="e"></param>
         private void NoteApp_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ProjectManager.SaveToFile(_project);
+            ProjectManager.SaveToFile(_project, _fileName);
         }
 
         /// <summary>
@@ -272,7 +290,7 @@ namespace NoteAppUI
         /// Запись названий заметок из списка notes в ListBox 
         /// </summary>
         /// <param name="notes"></param>
-        private void WriteListBox(List<Note> notes)
+        private void AddNotesToListBox(List<Note> notes)
         {
             for (var i = 0; i < notes.Count; i++)
             {
@@ -285,18 +303,27 @@ namespace NoteAppUI
             NameNotesListBox.Items.Clear();
             if ((string)CategoryComboBox.SelectedItem == "All")
             {
-                WriteListBox(_project.Notes);
-                NameNotesListBox.SelectedIndex = -1;
-                _notes = _project.Notes;
+                AddNotesToListBox(_project.Notes);
+                _viewNotes = _project.Notes;
             }
             else
             {
-                //Получаем категорию для сортировки
-                var category = (NotesCategory)Enum.Parse(typeof(NotesCategory), (string)CategoryComboBox.SelectedItem);
-                _notes = _project.ListSort(category);
-                WriteListBox(_notes);
+                AddSortListToLitsBox();
             }
             NameNotesListBox.SelectedIndex = -1;
+            ShowNote();
+        }
+        /// <summary>
+        /// Сортировка списка заметок по категории и 
+        /// запись отсортированного списка в элемент ListBox
+        /// </summary>
+        private void AddSortListToLitsBox()
+        {
+            //Получаем категорию для сортировки
+            var category = (NotesCategory)Enum.Parse(typeof(NotesCategory), (string)CategoryComboBox.SelectedItem);
+            _viewNotes = _project.ListSort(category);
+            NameNotesListBox.Items.Clear();
+            AddNotesToListBox(_viewNotes);
         }
     }
 }
