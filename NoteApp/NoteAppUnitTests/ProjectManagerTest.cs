@@ -16,37 +16,38 @@ namespace NoteAppUnitTests
     {
 
         private string _fileName = "../../../source/repos/NoteAppProject/NoteApp/NoteAppUnitTests/Resources/Expected.json";
+        //private string _fileName =  "Resources/Expected.json";
         Project _project = new Project();
         [SetUp]
-        public void InitNote()
+        public void InitNotes()
         {
             _project.Notes.Clear();
-            Note note = new Note();
-
-            note.Name = "Заметка №1";
-            note.Category = NotesCategory.Job;
-            note.NoteText = "Текст заметки";
-            note.CreationTime = DateTime.Parse("2019-11-15T13:58:56.7936768+03:00");
-            note.LastModTime = DateTime.Parse("2019-11-15T13:59:38.0189603+03:00");
-
             Note note1 = new Note();
-            note1.Name = "Заметка №2";
-            note1.Category = NotesCategory.HealthAndSport;
+
+            note1.Name = "Заметка №1";
+            note1.Category = NotesCategory.Job;
             note1.NoteText = "Текст заметки";
-            note1.CreationTime = DateTime.Parse("2019-11-15T13:59:12.7772289+03:00");
-            note1.LastModTime = DateTime.Parse("2019-11-15T14:00:05.550012+03:00");
+            note1.CreationTime = DateTime.Parse("2019-11-15T13:58:56.7936768+03:00");
+            note1.LastModTime = DateTime.Parse("2019-11-15T13:59:38.0189603+03:00");
 
             Note note2 = new Note();
-
-            note2.Name = "Заметка №3";
-            note2.Category = NotesCategory.Finance;
+            note2.Name = "Заметка №2";
+            note2.Category = NotesCategory.HealthAndSport;
             note2.NoteText = "Текст заметки";
-            note2.CreationTime = DateTime.Parse("2019-11-15T13:59:23.705611+03:00");
-            note2.LastModTime = DateTime.Parse("2019-11-15T14:00:18.5377638+03:00");
+            note2.CreationTime = DateTime.Parse("2019-11-15T13:59:12.7772289+03:00");
+            note2.LastModTime = DateTime.Parse("2019-11-15T14:00:05.550012+03:00");
 
+            Note note3 = new Note();
+
+            note3.Name = "Заметка №3";
+            note3.Category = NotesCategory.Finance;
+            note3.NoteText = "Текст заметки";
+            note3.CreationTime = DateTime.Parse("2019-11-15T13:59:23.705611+03:00");
+            note3.LastModTime = DateTime.Parse("2019-11-15T14:00:18.5377638+03:00");
+
+            _project.Notes.Add(note3);
             _project.Notes.Add(note2);
             _project.Notes.Add(note1);
-            _project.Notes.Add(note);
 
             _project.IndexSelectedNote = 2;
         }
@@ -59,7 +60,7 @@ namespace NoteAppUnitTests
 
             Project loadProject = ProjectManager.LoadFromFile(_fileName);
 
-            for (var numberNote = 2; numberNote > -1; numberNote--)
+            for (var numberNote = 0; numberNote <2; numberNote++)
             {
                 if (
                     loadProject.Notes[numberNote].Name == _project.Notes[numberNote].Name &&

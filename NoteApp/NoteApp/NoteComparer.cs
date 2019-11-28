@@ -10,16 +10,8 @@ namespace NoteApp
     {
         public int Compare(Note x, Note y)
         {
-            if (x.LastModTime > y.LastModTime)
-            {
-                return -1;
-            }
-            else if(x.LastModTime < y.LastModTime)
-            {
-                return 1;
-            }
-            return 0;
-            //throw new NotImplementedException();
+            int compareDate = x.LastModTime.CompareTo(y.LastModTime);
+            return -compareDate;
         }
     }
 }

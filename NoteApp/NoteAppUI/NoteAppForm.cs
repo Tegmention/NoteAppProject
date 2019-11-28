@@ -26,7 +26,6 @@ namespace NoteAppUI
         private string _fileName =
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             + @"/NoteApp.notes";
-        //private string _fileName = "../../../NoteAppUnitTests/Resources/TestNoteApp.json";
 
         /// <summary>
         /// Иницилизация формы
@@ -48,6 +47,15 @@ namespace NoteAppUI
         {
             _project = ProjectManager.LoadFromFile(_fileName);
             //Предусмотреть случай с пустым списком
+            if(_project == null)
+            {
+                _project = new Project();
+                _project.IndexSelectedNote = -1;
+            }
+            if(_project.Notes.Count==0 && _project.IndexSelectedNote!=-1)
+            {
+                _project.IndexSelectedNote = -1;
+            }
             _project.ListSort();
             AddNotesToListBox(_project.Notes);
             _viewNotes = _project.Notes;
@@ -256,6 +264,7 @@ namespace NoteAppUI
                         {
                             NameNotesListBox.SelectedIndex = -1;
                         }
+                        ProjectManager.SaveToFile(_project, _fileName);
                     }
                 }
             }

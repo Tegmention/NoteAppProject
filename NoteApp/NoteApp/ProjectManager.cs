@@ -43,6 +43,10 @@ namespace NoteApp
         /// <returns>Возвращает список заметок объект Project </returns>
         public static Project LoadFromFile(string fileName)
         {
+            if (!File.Exists(fileName))
+            {
+                File.Create(fileName).Close();
+            }
             Project project = null;
             JsonSerializer serializer = new JsonSerializer();
             using (StreamReader sr = new StreamReader(fileName))

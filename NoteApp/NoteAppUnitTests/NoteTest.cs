@@ -12,6 +12,7 @@ namespace NoteAppUnitTests
     public class NoteTest
     {
         private Note _note;
+
         [SetUp]
         public void InitNote()
         {
@@ -106,16 +107,11 @@ namespace NoteAppUnitTests
         [Test(Description = "Позитивный тест интерфейса ICloneable")]
         public void Test_Interface_ICloneable()
         {
-            var expected = true;
             var exnote = (Note)_note.Clone();
-            var actual = false;
-            if (_note.Name == exnote.Name && _note.Category == exnote.Category &&
+            var isCloned = _note.Name == exnote.Name && _note.Category == exnote.Category &&
                 _note.NoteText == exnote.NoteText && _note.CreationTime == exnote.CreationTime &&
-                _note.LastModTime == exnote.LastModTime)
-            {
-                actual = true;
-            }
-            Assert.AreEqual(expected, actual, "Метод Clone не возвращает копию заметки");
+                _note.LastModTime == exnote.LastModTime;
+            Assert.IsTrue(isCloned, "Метод Clone не возвращает копию заметки");
         }
 
         [TestCase("31.12.9999 23:59:59", "Должно возникать исключение если, дата сохранения больше текущей даты",

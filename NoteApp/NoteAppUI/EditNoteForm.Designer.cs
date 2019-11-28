@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditNoteForm));
             this.label1 = new System.Windows.Forms.Label();
             this.TitleTextBox = new System.Windows.Forms.TextBox();
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
@@ -202,6 +203,7 @@
             this.Controls.Add(this.RevokeButton);
             this.Controls.Add(this.NoteRichTextBox);
             this.Controls.Add(this.ErrorLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(409, 200);
             this.Name = "EditNoteForm";
             this.Text = "Add/Edit Note";
